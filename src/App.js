@@ -47,7 +47,7 @@ class Chart extends Component {
         this.getData()
 
     }
-    1501968409720
+    
     getData(){
         axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+this.startDate +'&end=9999999999&period=14400')
             .then(response => {

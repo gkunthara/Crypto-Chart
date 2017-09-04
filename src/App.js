@@ -37,7 +37,9 @@ class Chart extends Component {
         this.state = {
             dataArr: []
         };
+        this.startDate = this.toUnix()
         this.getData = this.getData.bind(this)
+        console.log(this.startDate)
     }
 
     componentDidMount(){
@@ -45,11 +47,11 @@ class Chart extends Component {
         this.getData()
 
     }
-
+    1501968409720
     getData(){
-
-        axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start=1501632000&end=9999999999&period=14400')
+        axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+this.startDate +'&end=9999999999&period=14400')
             .then(response => {
+                console.log(response)
                 const dataArr = response.data
                 this.setState({
                     dataArr: dataArr
@@ -59,10 +61,15 @@ class Chart extends Component {
 
     }
 
+    toUnix(){
+        var today = new Date()
+        var thirty = new Date().setDate(today.getDate()-30)/1000
+
+        return thirty
+    }
 
 
     render() {
-
         const Wrapper = styled.div`
         display: flex;
         flex-direction: row;

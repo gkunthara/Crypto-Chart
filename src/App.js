@@ -7,20 +7,13 @@ import { extent, max } from 'd3-array';
 import {Group} from '@vx/group';
 import { GridRows, GridColumns } from '@vx/grid';
 import styled from 'styled-components';
+import {withParentSize} from '@vx/responsive';
 
-//set width, height, and margins
-const width = 1250; //1250
-const height = 650; //650
-const margin = {
-    top: 60,
-    bottom: 60,
-    left: 80,
-    right: 80,
-};
+//set parentWidth, parentHeight, and margins
+// const parentWidth = 1000; //1250
+// const parentHeight = 600; //650
 
-//set xMax and yMax
-const xMax = width - margin.left - margin.right;
-const yMax = height - margin.top - margin.bottom;
+
 
 
 //convert Unix timestamps
@@ -39,7 +32,6 @@ class Chart extends Component {
         };
         this.startDate = this.toUnix()
         this.getData = this.getData.bind(this)
-        console.log(this.startDate)
     }
 
     componentDidMount(){
@@ -51,7 +43,7 @@ class Chart extends Component {
     getData(){
         axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+this.startDate +'&end=9999999999&period=14400')
             .then(response => {
-                console.log(response)
+
                 const dataArr = response.data
                 this.setState({
                     dataArr: dataArr
@@ -62,8 +54,8 @@ class Chart extends Component {
     }
 
     toUnix(){
-        var today = new Date()
-        var thirty = new Date().setDate(today.getDate()-30)/1000
+        let today = new Date()
+        let thirty = new Date().setDate(today.getDate()-30)/1000
 
         return thirty
     }
@@ -75,8 +67,26 @@ class Chart extends Component {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        
+
     `;
+
+        const {parentHeight, parentWidth} = this.props;
+
+        const width = parentWidth;
+        const height = 700;
+
+        const margin = {
+            top: 60,
+            bottom: 60,
+            left: 80,
+            right: 80,
+        };
+
+
+
+        //set xMax and yMax
+        const xMax = width - margin.left - margin.right;
+        const yMax = height - margin.top - margin.bottom;
 
 
         //scale x-axis
@@ -98,7 +108,7 @@ class Chart extends Component {
             <div className="Chart">
                 <svg width={width} height={height}>
 
-                    <Group top={margin.top} left={margin.left}>
+                   <Group top={margin.top} left={margin.left}>
 
                         <rect
                             x={0}
@@ -177,4 +187,4 @@ class Chart extends Component {
     }
 }
 
-export default Chart;
+export default withParentSize(Chart);

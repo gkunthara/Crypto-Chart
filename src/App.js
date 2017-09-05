@@ -8,6 +8,7 @@ import {Group} from '@vx/group';
 import { GridRows, GridColumns } from '@vx/grid';
 import styled from 'styled-components';
 import {withParentSize} from '@vx/responsive';
+import {Header} from './Header';
 
 //set parentWidth, parentHeight, and margins
 // const parentWidth = 1000; //1250
@@ -76,10 +77,11 @@ class Chart extends Component {
         const height = 700;
 
         const margin = {
-            top: 60,
+            top: 40,
             bottom: 60,
             left: 80,
             right: 80,
+
         };
 
 
@@ -98,12 +100,12 @@ class Chart extends Component {
         //scale y-axis
         const yScale = scaleLinear({
             range: [yMax, 0],
-            domain: [200, max(this.state.dataArr, y)]
+            domain: [250, max(this.state.dataArr, y)]
         });
 
         return (
-
-
+            <div>
+            <Header/>
             <Wrapper>
             <div className="Chart">
                 <svg width={width} height={height}>
@@ -175,7 +177,7 @@ class Chart extends Component {
                             label={'Price ($)'}
                             stroke={'#1b1a1e'}
                             tickTextFill={'#1b1a1e'}
-                            numTicks =  {5}
+                            numTicks =  {7}
                         />
 
 
@@ -183,6 +185,7 @@ class Chart extends Component {
                 </svg>
             </div>
             </Wrapper>
+            </div>
         )
     }
 }

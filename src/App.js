@@ -79,7 +79,8 @@ class Chart extends Component {
         const {parentHeight, parentWidth} = this.props;
 
         const width = parentWidth;
-        const height = parentWidth * aspectRatio ;
+        //const height = parentWidth * aspectRatio ;
+        const height = parentHeight;
 
         const margin = {
             top: 40,
@@ -162,14 +163,14 @@ class Chart extends Component {
                             stroke={""}
 
                         />
-                        <AxisBottom
-                            scale={xScale}
-                            top={yMax}
-                            label={''}
-                            stroke={'#e3eeff'}
-                            tickTextFill={'#e3eeff'}
-                            numTicks = {7}
-                        />
+                        {/*<AxisBottom*/}
+                            {/*scale={xScale}*/}
+                            {/*top={yMax}*/}
+                            {/*label={''}*/}
+                            {/*stroke={'#e3eeff'}*/}
+                            {/*tickTextFill={'#e3eeff'}*/}
+                            {/*numTicks = {7}*/}
+                        {/*/>*/}
                         <AxisLeft
                             scale={yScale}
                             top={0}

@@ -7,6 +7,7 @@
     "@vx/gradient": "0.0.136",
     "@vx/grid": "0.0.136",
     "@vx/group": "0.0.136",
+    "@vx/responsive": "0.0.136",
     "@vx/scale": "0.0.136",
     "@vx/shape": "0.0.136",
     "axios": "^0.16.2",

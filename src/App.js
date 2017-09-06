@@ -9,6 +9,8 @@ import { GridRows, GridColumns } from '@vx/grid';
 import styled from 'styled-components';
 import {withParentSize} from '@vx/responsive';
 import {Header} from './Header';
+import { LinearGradient } from '@vx/gradient';
+import {Footer} from "./Footer";
 
 //set parentWidth, parentHeight, and margins
 // const parentWidth = 1000; //1250
@@ -21,6 +23,9 @@ import {Header} from './Header';
 const x = d => new Date(d.date*1000);
 //grab only closing values
 const y = d => d.close;
+
+//adjust height
+const aspectRatio = 0.45
 
 
 class Chart extends Component {
@@ -42,7 +47,7 @@ class Chart extends Component {
     }
     
     getData(){
-        axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+this.startDate +'&end=9999999999&period=14400')
+        axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+this.startDate +'&end=9999999999&period=7200')
             .then(response => {
 
                 const dataArr = response.data
@@ -74,7 +79,7 @@ class Chart extends Component {
         const {parentHeight, parentWidth} = this.props;
 
         const width = parentWidth;
-        const height = 700;
+        const height = parentWidth * aspectRatio ;
 
         const margin = {
             top: 40,
@@ -108,6 +113,7 @@ class Chart extends Component {
             <Header/>
             <Wrapper>
             <div className="Chart">
+
                 <svg width={width} height={height}>
 
                    <Group top={margin.top} left={margin.left}>
@@ -117,8 +123,8 @@ class Chart extends Component {
                             y={0}
                             width={xMax}
                             height={yMax}
-                            fill="#32deaa"
-                            rx={10}
+                            fill="#e3eeff"
+                            rx={12}
                         />
 
 
@@ -127,7 +133,8 @@ class Chart extends Component {
                             scale={yScale}
                             width={xMax}
                             strokeDasharray="2,2"
-                            stroke="rgba(255,255,255,0.3)"
+                            strokeWidth=".2"
+                            stroke="#57618F"
                         />
 
                         <GridColumns
@@ -135,22 +142,15 @@ class Chart extends Component {
                             scale={xScale}
                             height={yMax}
                             strokeDasharray="2,2"
-                            stroke="rgba(255,255,255,0.3)"
+                            strokeWidth=".2"
+                            stroke="#57618F"
                         />
-                        <linearGradient
-                            id="gradient"
-                            x1="0%"
-                            y1="0%"
-                            x2="0%"
-                            y2="100%"
-                        >
-                            <stop offset="0%" stopColor="#FFFFFF" stopOpacity={1} />
-                            <stop
-                                offset="100%"
-                                stopColor="#FFFFFF"
-                                stopOpacity={0.2}
-                            />
-                        </linearGradient>
+
+                       <LinearGradient
+                           from='#a3bded'
+                           to='#6991c7'
+                           id='gradient'
+                       />
 
                         <AreaClosed
                             data={this.state.dataArr}
@@ -166,8 +166,8 @@ class Chart extends Component {
                             scale={xScale}
                             top={yMax}
                             label={''}
-                            stroke={'#1b1a1e'}
-                            tickTextFill={'#1b1a1e'}
+                            stroke={'#e3eeff'}
+                            tickTextFill={'#e3eeff'}
                             numTicks = {7}
                         />
                         <AxisLeft
@@ -175,8 +175,8 @@ class Chart extends Component {
                             top={0}
                             left={0}
                             label={'Price ($)'}
-                            stroke={'#1b1a1e'}
-                            tickTextFill={'#1b1a1e'}
+                            stroke={'#e3eeff'}
+                            tickTextFill={'#e3eeff'}
                             numTicks =  {7}
                         />
 
@@ -185,6 +185,7 @@ class Chart extends Component {
                 </svg>
             </div>
             </Wrapper>
+                <Footer/>
             </div>
         )
     }

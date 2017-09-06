@@ -10,7 +10,7 @@
 
 ```terminal
 git clone https://github.com/gkunthara/Ethereum-Chart.git
-cd viewsource
+cd Ethereum-Chart
 npm install
 npm run dev
 

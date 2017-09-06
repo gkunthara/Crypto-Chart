@@ -18,4 +18,12 @@ npm run dev
 ```
 
 
+## Todo
+
+- [x] Add current price of ethereum
+- [ ] Add tooltip functionality
+- [ ] Add animation when price changes
+- [ ] Add % gain/loss
+- [ ] Add [react-motion](https://github.com/chenglou/react-motion) to graph
+- [ ] Add more currencies
 

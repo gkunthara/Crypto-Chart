@@ -8,12 +8,14 @@
 
 # Setup
 
-```git clone https://github.com/gkunthara/Ethereum-Chart.git
+```terminal
+git clone https://github.com/gkunthara/Ethereum-Chart.git
 cd viewsource
 npm install
 npm run dev
 
-# => localhost:3000/```
+# => localhost:3000/
+```
 
 
 

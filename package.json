@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@vx/axis": "0.0.136",
+    "@vx/curve": "0.0.136",
     "@vx/gradient": "0.0.136",
     "@vx/grid": "0.0.136",
     "@vx/group": "0.0.136",

@@ -36,6 +36,7 @@ class Chart extends Component {
         super(props);
         this.state = {
             dataArr: []
+
         };
         this.startDate = this.toUnix()
         this.getData = this.getData.bind(this)

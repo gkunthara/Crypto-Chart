@@ -1,6 +1,6 @@
 # Ethereum Price Chart
 
-30 Day price history of Ethereum with real-time updates of current price in USD. Built using React and [vx](https://github.com/hshoff/vx)
+30 Day price history of Ethereum with real-time updates of current price in USD. Built using React and [vx](https://github.com/hshoff/vx). Stay tuned, will be deployed shortly!
 
 
 ![alt-text](https://github.com/gkunthara/Ethereum-Chart/blob/master/public/demo.png "Ethereum Chart")

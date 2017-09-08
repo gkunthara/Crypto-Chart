@@ -11,6 +11,7 @@ import {withParentSize} from '@vx/responsive';
 import {Header} from './Header';
 import { LinearGradient } from '@vx/gradient';
 import {Footer} from "./Footer";
+import { curveMonotoneX } from '@vx/curve';
 
 //set parentWidth, parentHeight, and margins
 // const parentWidth = 1000; //1250
@@ -35,6 +36,7 @@ class Chart extends Component {
         super(props);
         this.state = {
             dataArr: []
+
         };
         this.startDate = this.toUnix()
         this.getData = this.getData.bind(this)
@@ -80,6 +82,7 @@ class Chart extends Component {
 
         const width = parentWidth;
         const height = parentWidth * aspectRatio ;
+        //const height = parentHeight;
 
         const margin = {
             top: 40,
@@ -108,7 +111,7 @@ class Chart extends Component {
             domain: [250, max(this.state.dataArr, y)]
         });
 
-        return (
+        return width > 10 && height > 10 ? (
             <div>
             <Header/>
             <Wrapper>
@@ -124,8 +127,29 @@ class Chart extends Component {
                             width={xMax}
                             height={yMax}
                             fill="#e3eeff"
-                            rx={12}
+                            rx={15}
+
+
                         />
+
+                       <AxisBottom
+                           scale={xScale}
+                           top={yMax}
+                           stroke={'#e3eeff'}
+                           tickTextFill={'#e3eeff'}
+                           numTicks = {3}
+                           tickLength = {12}
+                           hideAxisLine
+                           hideTicks
+                           tickLabelComponent={
+                               <text
+                                   fill="#333"
+                                   fontSize={12}
+                                   textAnchor="middle"
+                                   fontFamily="Roboto"
+                               />
+                           }
+                       />
 
 
                         <GridRows
@@ -159,25 +183,28 @@ class Chart extends Component {
                             x={x}
                             y={y}
                             fill={"url(#gradient)"}
-                            stroke={""}
+                            stroke={"url(#gradient)"}
+                            curve={curveMonotoneX}
 
                         />
-                        <AxisBottom
-                            scale={xScale}
-                            top={yMax}
-                            label={''}
-                            stroke={'#e3eeff'}
-                            tickTextFill={'#e3eeff'}
-                            numTicks = {7}
-                        />
+
                         <AxisLeft
                             scale={yScale}
                             top={0}
-                            left={0}
-                            label={'Price ($)'}
-                            stroke={'#e3eeff'}
-                            tickTextFill={'#e3eeff'}
-                            numTicks =  {7}
+                            left={-15}
+                            stroke={'#333'}
+                            tickTextFill={'#333'}
+                            numTicks =  {5}
+                            hideAxisLine
+                            hideTicks
+                            tickLabelComponent={
+                                <text
+                                    fill="#333"
+                                    fontSize={11}
+                                    textAnchor="middle"
+                                    fontFamily="Roboto"
+                                />
+                            }
                         />
 
 
@@ -187,7 +214,7 @@ class Chart extends Component {
             </Wrapper>
                 <Footer/>
             </div>
-        )
+        ) : null;
     }
 }
 

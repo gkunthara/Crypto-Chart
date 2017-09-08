@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@vx/axis": "0.0.136",
+    "@vx/curve": "0.0.136",
     "@vx/gradient": "0.0.136",
     "@vx/grid": "0.0.136",
     "@vx/group": "0.0.136",
@@ -13,6 +14,7 @@
     "axios": "^0.16.2",
     "d3-array": "^1.2.0",
     "react": "^15.6.1",
+    "react-animated-number": "^0.4.3",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.12",
     "styled-components": "^2.1.2",

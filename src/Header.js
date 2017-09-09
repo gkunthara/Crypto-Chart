@@ -9,7 +9,7 @@ export class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentPrice: 0,
+            currentPrice:  0,
             percentChange: 0
         };
         this.getCurrentPrice = this.getCurrentPrice.bind(this)
@@ -18,11 +18,26 @@ export class Header extends Component {
     }
 
 
+    componentWillMount(){
+
+        this.getCurrentPrice();
+        this.getPercentChange();
+
+    }
+
+
     //re-render and update current price
     componentDidMount(){
 
-        this.getCurrentPrice()
-        this.getPercentChange()
+        //every 30 seconds update current price and percent change
+        setInterval(() => {
+
+            this.getCurrentPrice();
+            this.getPercentChange();
+
+
+        }, 30000);
+
 
     }
 
@@ -98,33 +113,26 @@ export class Header extends Component {
         const percentOutput = this.state.percentChange >= 0 ? '+' : '';
 
 
-        //every 30 seconds update current price.
-        setInterval(() => {
-
-            this.getCurrentPrice()
-
-
-        }, 30000);
-
-
         return (
+
 
             <div>
                 <Wrapper>
-                    <img src="https://i.imgur.com/i14bZwH.png" alt="Ethereum logo"/>
-                    <h2 style={headerStyle}>ethereum </h2>
-                    <h2 style={headerStyle}> &middot; $
+                <img src="https://i.imgur.com/i14bZwH.png" alt="Ethereum logo"/>
+                <h2 style={headerStyle}>ethereum </h2>
+                <h2 style={headerStyle}> &middot; $
 
 
-                        <AnimatedNumber
-                            style={{transition: '0.5s ease-out'}}
-                            stepPrecision={0}
-                            value={this.state.currentPrice}
-                            />
-                    </h2>
-                    <h2  style={percentStyle}> ({percentOutput}{this.state.percentChange}%) </h2>
+                    <AnimatedNumber
+                        style={{transition: '0.5s ease-out'}}
+                        stepPrecision={0}
+                        value={this.state.currentPrice}
+                        />
+                </h2>
+                <h2  style={percentStyle}> ({percentOutput}{this.state.percentChange}%) </h2>
                 </Wrapper>
             </div>
+
         )
     }
 }

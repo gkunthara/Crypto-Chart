@@ -9,10 +9,10 @@
 # Setup
 
 ```terminal
-git clone https://github.com/gkunthara/Ethereum-Chart.git
-cd Ethereum-Chart
+git clone https://github.com/gkunthara/Crypto-Chart.git
+cd Crypto-Chart
 npm install
-npm run dev
+npm start
 
 # => localhost:3000/
 ```

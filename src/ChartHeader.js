@@ -157,17 +157,13 @@ export class ChartHeader extends Component {
 
     `;
 
-        const buttonStyle = {
-            marginBottom: 10,
-            backgroundColor: '#EBF0F1',
-            border: 'none',
-            width: '17%',
-            marginLeft: 25
-        };
-
         const imgStyle = {
-            width: '90%',
-            height: 'auto'
+            //width: '90%',
+            width: '15%',
+            height: 'auto',
+            marginLeft: 25,
+            marginBottom: 10,
+            marginRight: 10
         };
 
         const headerStyle ={
@@ -194,10 +190,7 @@ return (
 
             <div>
                 <Wrapper>
-
-                    {/*<h2>{this.props.chartTitle}</h2>*/}
-
-                <button style={buttonStyle}><img style={imgStyle} src={this.imageToLoad()} alt="title"/></button>
+                    <img style={imgStyle} src={this.imageToLoad()} alt={this.props.chartTitle}/>
                     <h2 style={headerStyle}> &middot; $
                         <AnimatedNumber
                             style={{transition: '0.5s ease-out'}}

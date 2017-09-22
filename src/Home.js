@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { Card, Col, Row  } from 'antd';
 import './antd/dist/antd.css';
 import {Link} from 'react-router-dom';
@@ -10,15 +9,6 @@ import {Link} from 'react-router-dom';
 export class Home extends Component {
 
     render() {
-
-        const Wrapper = styled.div`
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 25px;
-
-    `;
 
         const pStyle ={
             marginTop: 25,
@@ -33,13 +23,12 @@ export class Home extends Component {
 
         return(
             <div>
-                <Wrapper>
                     <div className="jumbotron text-center">
                         <div className="container">
                             <h1 className="display-3">Crypto Chart</h1>
                             <p style={pStyle} className="lead">Check out prices of Ethereum & Bitcoin.</p>
                                 <Row type="flex" justify="center">
-                                    <Col span={4}>
+                                    <Col>
                                         <Link to={'/ethereum'}>
                                             <Card style={cardStyle}>
                                                 <div className="custom-image">
@@ -49,7 +38,7 @@ export class Home extends Component {
                                             </Card>
                                         </Link>
                                     </Col>
-                                    <Col span={4}>
+                                    <Col offset={1}>
                                         <Link to={'/bitcoin'}>
                                             <Card style={cardStyle}>
                                                 <div className="custom-image">
@@ -62,7 +51,6 @@ export class Home extends Component {
                                 </Row>
                         </div>
                     </div>
-                </Wrapper>
             </div>
         )
     }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import AnimatedNumber from 'react-animated-number';
+import { Col, Row  } from 'antd';
+
 
 
 export class ChartHeader extends Component {
@@ -28,7 +29,7 @@ export class ChartHeader extends Component {
         this.getPercentChange();
 
         //every 30 seconds update current price and percent change
-        setInterval(() => {
+        this.timer = setInterval(() => {
 
             this.getCurrentPrice();
             this.getPercentChange();
@@ -39,6 +40,10 @@ export class ChartHeader extends Component {
 
     }
 
+
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
 
 
     //get current Price of token and update currentPrice's state.
@@ -147,23 +152,14 @@ export class ChartHeader extends Component {
     render(){
 
 
-        const Wrapper = styled.div`
-        display: flex;
-        flex-direction: row;
-        //justify-content: center;
-        align-items: center;
-        //margin-top: 25px;
-        margin-left: 80px;
-
-    `;
 
         const imgStyle = {
-            //width: '90%',
-            width: '15%',
+
+            width: 150,
             height: 'auto',
             marginLeft: 25,
-            marginBottom: 10,
-            marginRight: 10
+            marginRight: 10,
+
         };
 
         const headerStyle ={
@@ -178,7 +174,8 @@ export class ChartHeader extends Component {
             fontSize: '16',
             fontWeight: '400',
             letterSpacing: '3',
-            color: this.state.percentChange > 0 ? '#0ba360' : 'red'
+            color: this.state.percentChange > 0 ? '#0ba360' : 'red',
+            marginTop: 10
         };
 
         //if output is greater than 0, add + sign
@@ -186,20 +183,24 @@ export class ChartHeader extends Component {
 
 return (
 
-
-
-            <div>
-                <Wrapper>
-                    <img style={imgStyle} src={this.imageToLoad()} alt={this.props.chartTitle}/>
-                    <h2 style={headerStyle}> &middot; $
-                        <AnimatedNumber
-                            style={{transition: '0.5s ease-out'}}
-                            stepPrecision={0}
-                            value={this.state.currentPrice}
-                            />
-                    </h2>
-                    <h2 style={percentStyle}> ({percentOutput}{this.state.percentChange}%) </h2>
-                </Wrapper>
+            <div className="container">
+                <Row type="flex" justify="center">
+                    <Col>
+                        <img style={imgStyle} src={this.imageToLoad()} alt={this.props.chartTitle}/>
+                    </Col>
+                    <Col>
+                        <h2 style={headerStyle}> &middot; $
+                            <AnimatedNumber
+                                style={{transition: '0.5s ease-out'}}
+                                stepPrecision={0}
+                                value={this.state.currentPrice}
+                                />
+                        </h2>
+                    </Col>
+                    <Col>
+                        <h2 style={percentStyle}> ({percentOutput}{this.state.percentChange}%) </h2>
+                    </Col>
+                </Row>
             </div>
         )
 

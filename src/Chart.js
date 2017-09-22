@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import axios from 'axios';
-import {AreaClosed, Line, Bar} from '@vx/shape';
+import {AreaClosed} from '@vx/shape';
 import { scaleTime, scaleLinear } from '@vx/scale';
-import { extent, max, bisector, min } from 'd3-array';
+import { extent, max, min } from 'd3-array';
 import {Group} from '@vx/group';
 import { GridRows, GridColumns } from '@vx/grid';
 import styled from 'styled-components';
@@ -19,10 +19,12 @@ const x = d => new Date(d.date*1000);
 const y = d => d.close;
 
 //adjust height
-const aspectRatio = 0.45
+const aspectRatio = 0.47;
 
 
-export class Chart extends Component {
+
+
+class Chart extends Component {
 
 
     constructor(props) {
@@ -37,9 +39,9 @@ export class Chart extends Component {
 
     componentDidMount(){
 
-        this.getData()
-
+        this.getData();
     }
+
 
     getData(){
 
@@ -92,7 +94,6 @@ export class Chart extends Component {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        //margin-top: 75px;
 
     `;
 
@@ -100,8 +101,9 @@ export class Chart extends Component {
             parentWidth,
         } = this.props;
 
-        const width = 1200;
-        const height = 600;
+        //const width = 1200;
+        const width = parentWidth;
+        const height = parentWidth * aspectRatio;
 
         const margin = {
             top: 40,
@@ -226,5 +228,11 @@ export class Chart extends Component {
                 </Wrapper>
         );
     }
+
+
 }
+
+export default withParentSize(Chart);
+
+
 

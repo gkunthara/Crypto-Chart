@@ -143,7 +143,7 @@ class Chart extends Component {
                                     y={0}
                                     width={xMax}
                                     height={yMax}
-                                    fill="#e3eeff"
+                                    fill="#dfe9f3"
                                     rx={15}
                                 />
 
@@ -160,7 +160,7 @@ class Chart extends Component {
                                     hideTicks
                                     tickLabelComponent={
                                         <text
-                                            fill="#333"
+                                            fill="#2CD696"
                                             fontSize={12}
                                             textAnchor="middle"
                                             fontFamily="Roboto"
@@ -175,7 +175,7 @@ class Chart extends Component {
                                     width={xMax}
                                     strokeDasharray="2,2"
                                     strokeWidth=".2"
-                                    stroke="#57618F"
+                                    stroke="#333"
                                 />
 
                                 <GridColumns
@@ -184,12 +184,12 @@ class Chart extends Component {
                                     height={yMax}
                                     strokeDasharray="2,2"
                                     strokeWidth=".2"
-                                    stroke="#57618F"
+                                    stroke="#333"
                                 />
 
                                 <LinearGradient
-                                    from='#a3bded'
-                                    to='#6991c7'
+                                    from='#1e3c72'
+                                    to='#2a5298'
                                     id='gradient'
                                 />
 
@@ -216,7 +216,7 @@ class Chart extends Component {
                                     hideTicks
                                     tickLabelComponent={
                                         <text
-                                            fill="#333"
+                                            fill="#2CD696"
                                             fontSize={11}
                                             textAnchor="middle"
                                             fontFamily="Roboto"

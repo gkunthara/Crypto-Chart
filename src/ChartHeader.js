@@ -139,7 +139,8 @@ export class ChartHeader extends Component {
 
         if(this.props.chartTitle === "ethereum"){
 
-            return "https://i.imgur.com/cIPkPcb.png"
+            // return "https://i.imgur.com/cIPkPcb.png
+                return "https://i.imgur.com/6C4jvHi.png"
         }
         else if(this.props.chartTitle === "bitcoin"){
 
@@ -166,7 +167,8 @@ export class ChartHeader extends Component {
             marginRight: 15,
             fontFamily: 'Roboto',
             fontWeight: '300',
-            letterSpacing: '3'
+            letterSpacing: '3',
+            color: 'white'
         };
 
         const percentStyle = {
@@ -174,7 +176,7 @@ export class ChartHeader extends Component {
             fontSize: '16',
             fontWeight: '400',
             letterSpacing: '3',
-            color: this.state.percentChange > 0 ? '#0ba360' : 'red',
+            color: this.state.percentChange > 0 ? '#2CD696' : 'red',
             marginTop: 10
         };
 

@@ -10,23 +10,28 @@ export class Home extends Component {
 
     render() {
 
-        const pStyle ={
-            marginTop: 25,
-            marginBottom: 25
-        };
-
         const cardStyle = {
             width: 175,
-            height: 150
-        }
+            height: 150,
+            borderColor: 'black',
+            borderWidth: 2
+        };
+
+        const h1Style = {
+
+            color: "white",
+            marginTop: 50,
+            marginBottom: 50,
+            letterSpacing: '2',
+
+        };
 
 
         return(
             <div>
-                    <div className="jumbotron text-center">
+                    <div style={{background: "transparent"}} className="jumbotron text-center">
                         <div className="container">
-                            <h1 className="display-3">Crypto Chart</h1>
-                            <p style={pStyle} className="lead">Check out prices of Ethereum & Bitcoin.</p>
+                            <h1 style={h1Style} className="display-4">Check out prices of Ethereum & Bitcoin</h1>
                                 <Row type="flex" justify="center">
                                     <Col>
                                         <Link to={'/ethereum'}>

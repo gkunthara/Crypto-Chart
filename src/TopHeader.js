@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import Sidebar from 'react-sidebar';
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import {Link, Route, Redirect} from 'react-router-dom';
 import {Token} from "./Token";
 import {Home} from "./Home";
 
@@ -31,7 +30,7 @@ export class TopHeader extends Component {
         const buttonStyle = {
 
             border: 'white',
-            color: 'white',
+            color: "#2CD696",
             textDecoration: 'none',
             marginLeft: 25,
         };
@@ -39,6 +38,7 @@ export class TopHeader extends Component {
         const linkItemStyle = {
             fontFamily: 'Roboto',
             fontWeight: '300',
+            color: "#09184E",
             fontSize: 18,
             letterSpacing: '3',
             marginLeft: 15,
@@ -47,15 +47,15 @@ export class TopHeader extends Component {
         }
 
         const sidebarContent = [
-            <Link to={'/home'}><h2 style={linkItemStyle}>Home</h2></Link>,
-            <Link to={'/ethereum'}><h2 style={linkItemStyle}>Ethereum</h2></Link>,
-            <Link to={'/bitcoin'}><h2 style={linkItemStyle}>Bitcoin</h2></Link>
+            <Link to={'/home'} onClick={this.toggleVisibility}><h2 style={linkItemStyle}>Home</h2></Link>,
+            <Link to={'/ethereum'} onClick={this.toggleVisibility}><h2 style={linkItemStyle}>Ethereum</h2></Link>,
+            <Link to={'/bitcoin'} onClick={this.toggleVisibility}><h2 style={linkItemStyle}>Bitcoin</h2></Link>
             ];
 
 
         const sidebarStyles = {
             sidebar: {
-                backgroundColor: '#a3bded',
+                backgroundColor: 'white',
                 width: '200px',
             },
 
@@ -63,13 +63,14 @@ export class TopHeader extends Component {
 
         const headerStyle = {
 
-            backgroundColor: '#005bea',
+            backgroundColor: '#09184E',
         };
 
         const titleStyle = {
             color: 'white',
             marginLeft: 10,
-            marginTop: 10
+            marginTop: 7,
+            paddingBottom: 5
         };
 
 
@@ -86,9 +87,10 @@ export class TopHeader extends Component {
                     <div className="container-fluid" style={headerStyle}>
                         <div className="row">
                             <button type="button" className="btn btn-outline-primary" style={buttonStyle} onClick={this.toggleVisibility}>=</button>
-                            <h2 style={titleStyle}>Token Chart</h2>
+                            <Link to={'/home'}><h2 style={titleStyle}>Crypto Chart</h2></Link>
                         </div>
                     </div>
+                    <Route exact path="/" render={()=> <Redirect to='/home'/>}/>
                     <Route path="/ethereum" render={(props) => (<Token chart="ethereum" {...props}/>)}/>
                     <Route path="/bitcoin"  render={(props) => (<Token chart="bitcoin" {...props}/>)}/>
                     <Route path="/Home" component={Home}/>

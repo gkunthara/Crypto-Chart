@@ -15,12 +15,14 @@ export class Footer extends Component {
 
             fontFamily: 'Roboto',
             fontWeight: '400',
-            letterSpacing: '3'
+            letterSpacing: '3',
+            color: '#2CD696',
         };
 
         const linkStyle = {
             fontFamily: 'Roboto',
             fontWeight: '400',
+            color: '#2CD696'
 
         }
 

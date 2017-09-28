@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 
 
 
-export class Home extends Component {
+class Home extends Component {
 
     render() {
 
@@ -60,3 +60,5 @@ export class Home extends Component {
         )
     }
 }
+
+export default Home;

@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 
 
-export class Token extends Component {
+class Token extends Component {
 
 
 
@@ -35,3 +35,5 @@ export class Token extends Component {
         )
     }
 }
+
+export default Token;

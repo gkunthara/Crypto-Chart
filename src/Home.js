@@ -31,7 +31,7 @@ class Home extends Component {
             <div>
                     <div style={{background: "transparent"}} className="jumbotron text-center">
                         <div className="container">
-                            <h1 style={h1Style} className="display-4">Check out prices of Ethereum & Bitcoin</h1>
+                            <h1 style={h1Style} className="display-4">Check out the latest prices of Ethereum & Bitcoin</h1>
                                 <Row type="flex" justify="center">
                                     <Col>
                                         <Link to={'/ethereum'}>

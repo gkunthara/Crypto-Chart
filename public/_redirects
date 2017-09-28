@@ -1,4 +1,4 @@
-crypto-chart.netlify.com/     https://crypto-chart.netlify.com/home 301
+crypto-chart.netlify.com     https://crypto-chart.netlify.com/home 301
 crypto-chart.netlify.com/home https://crypto-chart.netlify.com/home 301
 crypto-chart.netlify.com/ethereum https://crypto-chart.netlify.com/ethereum 301
 crypto-chart.netlify.com/bitcoin https://crypto-chart.netlify.com/bitcoin 301

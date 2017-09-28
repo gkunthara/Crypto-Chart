@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {TopHeader} from "./TopHeader";
+import createBrowserHistory from 'history/createBrowserHistory'
 
+const customHistory = createBrowserHistory();
 
 class App extends Component {
 
@@ -9,7 +11,7 @@ class App extends Component {
 
         return(
 
-            <Router>
+            <Router history={customHistory}>
                 <div>
                     <TopHeader/>
                 </div>

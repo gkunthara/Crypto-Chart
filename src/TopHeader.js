@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Sidebar from 'react-sidebar';
 import {Link, Route, Redirect} from 'react-router-dom';
-import {Token} from "./Token";
-import {Home} from "./Home";
+import Token from "./Token";
+import Home from "./Home";
 
 
 

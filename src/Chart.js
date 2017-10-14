@@ -87,6 +87,19 @@ class Chart extends Component {
         return thirty
     }
 
+    toSeven(){
+        let today = new Date()
+        let seven = new Date().setDate(today.getDate()-7)/1000
+
+        return seven
+    }
+    
+    toOne(){
+        let today = new Date()
+        let one = new Date().setDate(today.getDate()-1)/1000
+
+        return one
+    }
 
     render() {
         const Wrapper = styled.div`

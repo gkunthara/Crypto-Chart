@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import AnimatedNumber from 'react-animated-number';
-import { Col, Row  } from 'antd';
+import { Col, Row, Button  } from 'antd';
+import {Link} from 'react-router-dom';
+
+
+const ButtonGroup = Button.Group;
 
 
 
@@ -201,6 +205,13 @@ return (
                     </Col>
                     <Col>
                         <h2 style={percentStyle}> ({percentOutput}{this.state.percentChange}%) </h2>
+                    </Col>
+                    <Col>
+                        <ButtonGroup>
+                            <Link to={'/home'}><Button>1m</Button></Link>
+                            <Button>7d</Button>
+                            <Button>1d</Button>
+                        </ButtonGroup>
                     </Col>
                 </Row>
             </div>

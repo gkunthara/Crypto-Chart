@@ -91,8 +91,14 @@ export class TopHeader extends Component {
                         </div>
                     </div>
                     <Route exact path="/" render={()=> <Redirect to='/home'/>}/>
-                    <Route path="/ethereum" render={(props) => (<Token chart="ethereum" {...props}/>)}/>
-                    <Route path="/bitcoin"  render={(props) => (<Token chart="bitcoin" {...props}/>)}/>
+                    <Route path="/ethereum" render={(props) => (<Token chart="ethereum" interval="1m"/>)}/>
+                    <Route path="/ethereum7day" render={(props) => (<Token chart = "ethereum" interval="7d"/>)}/>
+                    <Route path="/ethereum1day" render={(props) => (<Token chart = "ethereum" interval="1d"/>)}/>
+
+                    <Route path="/bitcoin" render={(props) => (<Token chart="bitcoin" interval="1m"/>)}/>
+                    <Route path="/bitcoin7day" render={(props) => (<Token chart = "bitcoin" interval="7d"/>)}/>
+                    <Route path="/bitcoin1day" render={(props) => (<Token chart = "bitcoin" interval="1d"/>)}/>
+
                     <Route path="/Home" component={Home}/>
                 </Sidebar>
             </div>

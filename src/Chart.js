@@ -23,7 +23,6 @@ const aspectRatio = 0.47;
 
 
 
-
 class Chart extends Component {
 
 
@@ -31,10 +30,10 @@ class Chart extends Component {
         super(props);
         this.state = {
             dataArr: []
-
         };
-        this.startDate = this.toUnix();
+
         this.getData = this.getData.bind(this);
+        this.getInterval = this.getInterval.bind(this);
     }
 
     componentDidMount(){
@@ -43,11 +42,46 @@ class Chart extends Component {
     }
 
 
+    getInterval(){
+
+        if(this.props.interval === "1m"){
+            return this.toThirty()
+        }
+        else if(this.props.interval === "7d"){
+            return this.toSeven()
+        }
+        else if(this.props.interval === "1d"){
+            return  this.toOne()
+        }
+        else{
+            return null
+        }
+    }
+
+    getPeriod(){
+        if(this.props.interval === "1m"){
+            return "7200"
+        }
+        else if(this.props.interval === "7d"){
+            return "1800"
+        }
+        else if(this.props.interval === "1d"){
+            return "300"
+        }
+        else{
+            return null
+        }
+    }
+
+
     getData(){
+
+        const date = this.getInterval()
+        const period = this.getPeriod()
 
         if(this.props.chartToPlot === "ethereum"){
 
-            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+this.startDate +'&end=9999999999&period=7200')
+            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+date +'&end=9999999999&period='+period)
                 .then(response => {
 
                     const dataArr = response.data
@@ -61,7 +95,7 @@ class Chart extends Component {
 
         else if(this.props.chartToPlot === "bitcoin"){
 
-            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start='+this.startDate +'&end=9999999999&period=7200')
+            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start='+date +'&end=9999999999&period=7200')
                 .then(response => {
 
                     const dataArr = response.data
@@ -70,17 +104,14 @@ class Chart extends Component {
                     })
 
                 })
-
         }
         else{
             return null;
         }
 
-
-
     }
 
-    toUnix(){
+    toThirty(){
         let today = new Date()
         let thirty = new Date().setDate(today.getDate()-30)/1000
 

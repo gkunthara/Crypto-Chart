@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import AnimatedNumber from 'react-animated-number';
-import { Col, Row, Button  } from 'antd';
+import { Col, Row, Button, } from 'antd';
 import {Link} from 'react-router-dom';
 
 
@@ -50,6 +50,45 @@ export class ChartHeader extends Component {
     }
 
 
+    getInterval(){
+
+        if(this.props.interval === "1m"){
+            return this.toThirty()
+        }
+        else if(this.props.interval === "7d"){
+            return this.toSeven()
+        }
+        else if(this.props.interval === "1d"){
+            return  this.toOne()
+        }
+        else{
+            return null
+        }
+    }
+
+    toThirty(){
+        let today = new Date()
+        let thirty = new Date().setDate(today.getDate()-30)/1000
+
+        return thirty
+    }
+
+    toSeven(){
+        let today = new Date()
+        let seven = new Date().setDate(today.getDate()-7)/1000
+
+        return seven
+    }
+
+    toOne(){
+        let today = new Date()
+        let one = new Date().setDate(today.getDate()-1)/1000
+
+        return one
+    }
+
+
+
     //get current Price of token and update currentPrice's state.
     getCurrentPrice(){
 
@@ -86,8 +125,10 @@ export class ChartHeader extends Component {
 
     getPercentChange(){
 
+        const date = this.getInterval();
+
         if(this.props.chartTitle === "ethereum"){
-            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+this.startDate +'&end=9999999999&period=7200')
+            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+date +'&end=9999999999&period=7200')
                 .then(response => {
 
                     const first = response.data[0].close;
@@ -103,7 +144,7 @@ export class ChartHeader extends Component {
         }
 
         else if(this.props.chartTitle === "bitcoin"){
-            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start='+this.startDate +'&end=9999999999&period=7200')
+            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start='+date +'&end=9999999999&period=7200')
                 .then(response => {
 
                     const first = response.data[0].close;
@@ -143,8 +184,7 @@ export class ChartHeader extends Component {
 
         if(this.props.chartTitle === "ethereum"){
 
-            // return "https://i.imgur.com/cIPkPcb.png
-                return "https://i.imgur.com/6C4jvHi.png"
+            return "https://i.imgur.com/6C4jvHi.png"
         }
         else if(this.props.chartTitle === "bitcoin"){
 
@@ -153,10 +193,7 @@ export class ChartHeader extends Component {
     }
 
 
-
     render(){
-
-
 
         const imgStyle = {
 
@@ -206,11 +243,11 @@ return (
                     <Col>
                         <h2 style={percentStyle}> ({percentOutput}{this.state.percentChange}%) </h2>
                     </Col>
-                    <Col>
+                    <Col style={{marginLeft: 15, marginTop: 5}}>
                         <ButtonGroup>
-                            <Link to={'/home'}><Button>1m</Button></Link>
-                            <Button>7d</Button>
-                            <Button>1d</Button>
+                            <Link to={'/ethereum'}><Button ghost>1m</Button></Link>
+                            <Link to={'/ethereum7day'}><Button ghost>7d</Button></Link>
+                            <Link to={'/ethereum1day'}><Button ghost>1d</Button></Link>
                         </ButtonGroup>
                     </Col>
                 </Row>

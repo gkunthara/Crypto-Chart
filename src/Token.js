@@ -28,8 +28,14 @@ class Token extends Component {
 
         return(
             <Wrapper>
-                <ChartHeader chartTitle = {this.props.chart}/>
-                <Chart chartToPlot = {this.props.chart}/>
+                <ChartHeader
+                    chartTitle = {this.props.chart}
+                    interval = {this.props.interval}
+                />
+                <Chart
+                    chartToPlot = {this.props.chart}
+                    interval = {this.props.interval}
+                />
                 <Footer/>
             </Wrapper>
         )

@@ -3,6 +3,7 @@ import Sidebar from 'react-sidebar';
 import {Link, Route, Redirect} from 'react-router-dom';
 import Token from "./Token";
 import Home from "./Home";
+import Currency from "./Currency";
 
 
 
@@ -90,16 +91,21 @@ export class TopHeader extends Component {
                             <Link to={'/home'}><h2 style={titleStyle}>Crypto Chart</h2></Link>
                         </div>
                     </div>
-                    <Route exact path="/" render={()=> <Redirect to='/home'/>}/>
-                    <Route path="/ethereum" render={(props) => (<Token chart="ethereum" interval="1m"/>)}/>
-                    <Route path="/ethereum7day" render={(props) => (<Token chart = "ethereum" interval="7d"/>)}/>
-                    <Route path="/ethereum1day" render={(props) => (<Token chart = "ethereum" interval="1d"/>)}/>
 
-                    <Route path="/bitcoin" render={(props) => (<Token chart="bitcoin" interval="1m"/>)}/>
-                    <Route path="/bitcoin7day" render={(props) => (<Token chart = "bitcoin" interval="7d"/>)}/>
-                    <Route path="/bitcoin1day" render={(props) => (<Token chart = "bitcoin" interval="1d"/>)}/>
+                    <Route exact path="/" render={()=> <Redirect to='/home'/>}/>
+                    {/*<Route path="/ethereum" render={(props) => (<Token chart="ethereum" interval="1m"/>)}/>*/}
+                    {/*<Route path="/ethereum/7day" render={(props) => (<Token chart = "ethereum" interval="7d"/>)}/>*/}
+                    {/*<Route path="/ethereum/1day" render={(props) => (<Token chart = "ethereum" interval="1d"/>)}/>*/}
+                    <Route path="/ethereum" component={Currency}/>
+                    <Route path="/bitcoin" component={Currency}/>
+
+
+                    {/*<Route path="/bitcoin" render={(props) => (<Token chart="bitcoin" interval="1m"/>)}/>*/}
+                    {/*<Route path="bitcoin/7day" render={(props) => (<Token chart = "bitcoin" interval="7d"/>)}/>*/}
+                    {/*<Route path="bitcoin/1day" render={(props) => (<Token chart = "bitcoin" interval="1d"/>)}/>*/}
 
                     <Route path="/Home" component={Home}/>
+
                 </Sidebar>
             </div>
 

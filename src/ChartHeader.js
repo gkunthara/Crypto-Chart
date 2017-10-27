@@ -16,7 +16,7 @@ export class ChartHeader extends Component {
         this.state = {
             currentPrice:  0,
             percentChange: 0,
-            sidebarOpen: false
+            sidebarOpen: false,
         };
         this.getCurrentPrice = this.getCurrentPrice.bind(this)
         this.getPercentChange = this.getPercentChange.bind(this)
@@ -92,10 +92,9 @@ export class ChartHeader extends Component {
     //get current Price of token and update currentPrice's state.
     getCurrentPrice(){
 
-        if(this.props.chartTitle === "ethereum"){
+        if(this.props.chartTitle === "/ethereum"){
             axios.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD')
                 .then(response => {
-
                     const price = response.data.USD
                     this.setState({
                         currentPrice: price
@@ -104,10 +103,9 @@ export class ChartHeader extends Component {
                 })
 
         }
-        else if(this.props.chartTitle === "bitcoin"){
+        else if(this.props.chartTitle === "/bitcoin"){
             axios.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD')
                 .then(response => {
-
                     const price = response.data.USD
                     this.setState({
                         currentPrice: price
@@ -127,7 +125,7 @@ export class ChartHeader extends Component {
 
         const date = this.getInterval();
 
-        if(this.props.chartTitle === "ethereum"){
+        if(this.props.chartTitle === "/ethereum"){
             axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+date +'&end=9999999999&period=7200')
                 .then(response => {
 
@@ -138,12 +136,11 @@ export class ChartHeader extends Component {
                     this.setState({
                         percentChange:  output
                     })
-
                 })
 
         }
 
-        else if(this.props.chartTitle === "bitcoin"){
+        else if(this.props.chartTitle === "/bitcoin"){
             axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start='+date +'&end=9999999999&period=7200')
                 .then(response => {
 
@@ -182,18 +179,21 @@ export class ChartHeader extends Component {
 
     imageToLoad(){
 
-        if(this.props.chartTitle === "ethereum"){
+        if(this.props.chartTitle === "/ethereum"){
 
             return "https://i.imgur.com/6C4jvHi.png"
         }
-        else if(this.props.chartTitle === "bitcoin"){
+        else if(this.props.chartTitle === "/bitcoin"){
 
             return "https://i.imgur.com/ImOWNFU.png"
         }
     }
 
-
     render(){
+
+
+
+        // console.log(this.props.location.pathname);
 
         const imgStyle = {
 
@@ -244,10 +244,11 @@ return (
                         <h2 style={percentStyle}> ({percentOutput}{this.state.percentChange}%) </h2>
                     </Col>
                     <Col style={{marginLeft: 15, marginTop: 5}}>
+
                         <ButtonGroup>
-                            <Link to={'/ethereum'}><Button ghost>1m</Button></Link>
-                            <Link to={'/ethereum7day'}><Button ghost>7d</Button></Link>
-                            <Link to={'/ethereum1day'}><Button ghost>1d</Button></Link>
+                            <Link to={this.props.location}><Button ghost>1m</Button></Link>
+                            <Link to={`${this.props.location}/7day`}><Button ghost>7d</Button></Link>
+                            <Link to={`${this.props.location}/1day`}><Button ghost>1d</Button></Link>
                         </ButtonGroup>
                     </Col>
                 </Row>

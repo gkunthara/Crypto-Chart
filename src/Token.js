@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {ChartHeader} from './ChartHeader';
 import Chart from './Chart';
 import {Footer} from "./Footer";
 import styled from 'styled-components';
 
 
-
-
-
-
-
-class Token extends Component {
+class Token extends PureComponent {
 
 
 
@@ -25,10 +20,10 @@ class Token extends Component {
     `;
 
 
-
         return(
             <Wrapper>
                 <ChartHeader
+                    location = {this.props.location}
                     chartTitle = {this.props.chart}
                     interval = {this.props.interval}
                 />

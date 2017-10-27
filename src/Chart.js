@@ -79,7 +79,7 @@ class Chart extends Component {
         const date = this.getInterval()
         const period = this.getPeriod()
 
-        if(this.props.chartToPlot === "ethereum"){
+        if(this.props.chartToPlot === "/ethereum"){
 
             axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+date +'&end=9999999999&period='+period)
                 .then(response => {
@@ -93,9 +93,9 @@ class Chart extends Component {
 
         }
 
-        else if(this.props.chartToPlot === "bitcoin"){
+        else if(this.props.chartToPlot === "/bitcoin"){
 
-            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start='+date +'&end=9999999999&period=7200')
+            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start='+date +'&end=9999999999&period='+period)
                 .then(response => {
 
                     const dataArr = response.data

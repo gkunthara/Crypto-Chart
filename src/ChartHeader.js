@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import AnimatedNumber from 'react-animated-number';
-import { Col, Row  } from 'antd';
+import { Col, Row, Button, } from 'antd';
+import {Link} from 'react-router-dom';
+
+
+const ButtonGroup = Button.Group;
 
 
 
@@ -12,7 +16,7 @@ export class ChartHeader extends Component {
         this.state = {
             currentPrice:  0,
             percentChange: 0,
-            sidebarOpen: false
+            sidebarOpen: false,
         };
         this.getCurrentPrice = this.getCurrentPrice.bind(this)
         this.getPercentChange = this.getPercentChange.bind(this)
@@ -46,13 +50,51 @@ export class ChartHeader extends Component {
     }
 
 
+    getInterval(){
+
+        if(this.props.interval === "1m"){
+            return this.toThirty()
+        }
+        else if(this.props.interval === "7d"){
+            return this.toSeven()
+        }
+        else if(this.props.interval === "1d"){
+            return  this.toOne()
+        }
+        else{
+            return null
+        }
+    }
+
+    toThirty(){
+        let today = new Date()
+        let thirty = new Date().setDate(today.getDate()-30)/1000
+
+        return thirty
+    }
+
+    toSeven(){
+        let today = new Date()
+        let seven = new Date().setDate(today.getDate()-7)/1000
+
+        return seven
+    }
+
+    toOne(){
+        let today = new Date()
+        let one = new Date().setDate(today.getDate()-1)/1000
+
+        return one
+    }
+
+
+
     //get current Price of token and update currentPrice's state.
     getCurrentPrice(){
 
-        if(this.props.chartTitle === "ethereum"){
+        if(this.props.chartTitle === "/ethereum"){
             axios.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD')
                 .then(response => {
-
                     const price = response.data.USD
                     this.setState({
                         currentPrice: price
@@ -61,10 +103,9 @@ export class ChartHeader extends Component {
                 })
 
         }
-        else if(this.props.chartTitle === "bitcoin"){
+        else if(this.props.chartTitle === "/bitcoin"){
             axios.get('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD')
                 .then(response => {
-
                     const price = response.data.USD
                     this.setState({
                         currentPrice: price
@@ -82,8 +123,10 @@ export class ChartHeader extends Component {
 
     getPercentChange(){
 
-        if(this.props.chartTitle === "ethereum"){
-            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+this.startDate +'&end=9999999999&period=7200')
+        const date = this.getInterval();
+
+        if(this.props.chartTitle === "/ethereum"){
+            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_ETH&start='+date +'&end=9999999999&period=7200')
                 .then(response => {
 
                     const first = response.data[0].close;
@@ -93,13 +136,12 @@ export class ChartHeader extends Component {
                     this.setState({
                         percentChange:  output
                     })
-
                 })
 
         }
 
-        else if(this.props.chartTitle === "bitcoin"){
-            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start='+this.startDate +'&end=9999999999&period=7200')
+        else if(this.props.chartTitle === "/bitcoin"){
+            axios.get('https://poloniex.com/public?command=returnChartData&currencyPair=USDT_BTC&start='+date +'&end=9999999999&period=7200')
                 .then(response => {
 
                     const first = response.data[0].close;
@@ -137,22 +179,21 @@ export class ChartHeader extends Component {
 
     imageToLoad(){
 
-        if(this.props.chartTitle === "ethereum"){
+        if(this.props.chartTitle === "/ethereum"){
 
-            // return "https://i.imgur.com/cIPkPcb.png
-                return "https://i.imgur.com/6C4jvHi.png"
+            return "https://i.imgur.com/6C4jvHi.png"
         }
-        else if(this.props.chartTitle === "bitcoin"){
+        else if(this.props.chartTitle === "/bitcoin"){
 
             return "https://i.imgur.com/ImOWNFU.png"
         }
     }
 
-
-
     render(){
 
 
+
+        // console.log(this.props.location.pathname);
 
         const imgStyle = {
 
@@ -201,6 +242,14 @@ return (
                     </Col>
                     <Col>
                         <h2 style={percentStyle}> ({percentOutput}{this.state.percentChange}%) </h2>
+                    </Col>
+                    <Col style={{marginLeft: 15, marginTop: 5}}>
+
+                        <ButtonGroup>
+                            <Link to={this.props.location}><Button ghost>1m</Button></Link>
+                            <Link to={`${this.props.location}/7day`}><Button ghost>7d</Button></Link>
+                            <Link to={`${this.props.location}/1day`}><Button ghost>1d</Button></Link>
+                        </ButtonGroup>
                     </Col>
                 </Row>
             </div>

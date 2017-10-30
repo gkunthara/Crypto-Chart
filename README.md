@@ -1,6 +1,6 @@
 # Cryptocurrency Price Chart
 
-30 Day price history of Ethereum and Bitcoin with real-time updates of current price in USD. Built using React and [vx](https://github.com/hshoff/vx).
+30 day, 7 day, and 1 day price history of Ethereum and Bitcoin with real-time updates of current price in USD. Built using React and [vx](https://github.com/hshoff/vx).
 
 
 ![alt-text](https://github.com/gkunthara/Ethereum-Chart/blob/master/public/demo.png "Ethereum Chart")

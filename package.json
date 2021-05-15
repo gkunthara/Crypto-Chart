@@ -17,6 +17,7 @@
     "axios": "^0.16.2",
     "d3-array": "^1.2.1",
     "history": "^4.7.2",
+    "prettier": "^2.3.0",
     "react": "^15.6.2",
     "react-animated-number": "^0.4.3",
     "react-burger-menu": "^2.1.6",

@@ -1,115 +1,112 @@
-import React, { Component } from 'react';
-import Sidebar from 'react-sidebar';
-import {Link, Route, Redirect} from 'react-router-dom';
+import React, { Component } from "react";
+import Sidebar from "react-sidebar";
+import { Link, Route, Redirect } from "react-router-dom";
 import Token from "./Token";
 import Home from "./Home";
 import Currency from "./Currency";
 
-
-
 export class TopHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sidebarOpen: false,
+    };
+    this.toggleVisibility = this.toggleVisibility.bind(this);
+  }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            sidebarOpen: false,
-        };
-        this.toggleVisibility = this.toggleVisibility.bind(this)
-    }
+  toggleVisibility() {
+    this.setState({
+      sidebarOpen: !this.state.sidebarOpen,
+    });
+  }
 
+  render() {
+    const buttonStyle = {
+      border: "white",
+      color: "#2CD696",
+      textDecoration: "none",
+      marginLeft: 25,
+    };
 
-    toggleVisibility() {
-        this.setState(
-            {
-                sidebarOpen: !this.state.sidebarOpen
-            });
-    }
+    const linkItemStyle = {
+      fontFamily: "Roboto",
+      fontWeight: "300",
+      color: "#09184E",
+      fontSize: 18,
+      letterSpacing: "3",
+      marginLeft: 15,
+      marginTop: 25,
+      paddingBottom: 15,
+    };
 
+    const sidebarContent = [
+      <Link to={"/home"} onClick={this.toggleVisibility}>
+        <h2 style={linkItemStyle}>Home</h2>
+      </Link>,
+      <Link to={"/ethereum"} onClick={this.toggleVisibility}>
+        <h2 style={linkItemStyle}>Ethereum</h2>
+      </Link>,
+      <Link to={"/bitcoin"} onClick={this.toggleVisibility}>
+        <h2 style={linkItemStyle}>Bitcoin</h2>
+      </Link>,
+    ];
 
-    render(){
+    const sidebarStyles = {
+      sidebar: {
+        backgroundColor: "white",
+        width: "200px",
+      },
+    };
 
-        const buttonStyle = {
+    const headerStyle = {
+      backgroundColor: "#09184E",
+    };
 
-            border: 'white',
-            color: "#2CD696",
-            textDecoration: 'none',
-            marginLeft: 25,
-        };
+    const titleStyle = {
+      color: "white",
+      marginLeft: 10,
+      marginTop: 7,
+      paddingBottom: 5,
+    };
 
-        const linkItemStyle = {
-            fontFamily: 'Roboto',
-            fontWeight: '300',
-            color: "#09184E",
-            fontSize: 18,
-            letterSpacing: '3',
-            marginLeft: 15,
-            marginTop: 25,
-            paddingBottom: 15
-        }
-
-        const sidebarContent = [
-            <Link to={'/home'} onClick={this.toggleVisibility}><h2 style={linkItemStyle}>Home</h2></Link>,
-            <Link to={'/ethereum'} onClick={this.toggleVisibility}><h2 style={linkItemStyle}>Ethereum</h2></Link>,
-            <Link to={'/bitcoin'} onClick={this.toggleVisibility}><h2 style={linkItemStyle}>Bitcoin</h2></Link>
-            ];
-
-
-        const sidebarStyles = {
-            sidebar: {
-                backgroundColor: 'white',
-                width: '200px',
-            },
-
-        };
-
-        const headerStyle = {
-
-            backgroundColor: '#09184E',
-        };
-
-        const titleStyle = {
-            color: 'white',
-            marginLeft: 10,
-            marginTop: 7,
-            paddingBottom: 5
-        };
-
-
-        return (
-
-
-
-            <div>
-                <Sidebar sidebar={sidebarContent}
-                    open={this.state.sidebarOpen}
-                    onSetOpen={this.toggleVisibility}
-                    styles={sidebarStyles}
-                >
-                    <div className="container-fluid" style={headerStyle}>
-                        <div className="row">
-                            <button type="button" className="btn btn-outline-primary" style={buttonStyle} onClick={this.toggleVisibility}>=</button>
-                            <Link to={'/home'}><h2 style={titleStyle}>Crypto Chart</h2></Link>
-                        </div>
-                    </div>
-
-                    <Route exact path="/" render={()=> <Redirect to='/home'/>}/>
-                    {/*<Route path="/ethereum" render={(props) => (<Token chart="ethereum" interval="1m"/>)}/>*/}
-                    {/*<Route path="/ethereum/7day" render={(props) => (<Token chart = "ethereum" interval="7d"/>)}/>*/}
-                    {/*<Route path="/ethereum/1day" render={(props) => (<Token chart = "ethereum" interval="1d"/>)}/>*/}
-                    <Route path="/ethereum" component={Currency}/>
-                    <Route path="/bitcoin" component={Currency}/>
-
-
-                    {/*<Route path="/bitcoin" render={(props) => (<Token chart="bitcoin" interval="1m"/>)}/>*/}
-                    {/*<Route path="bitcoin/7day" render={(props) => (<Token chart = "bitcoin" interval="7d"/>)}/>*/}
-                    {/*<Route path="bitcoin/1day" render={(props) => (<Token chart = "bitcoin" interval="1d"/>)}/>*/}
-
-                    <Route path="/Home" component={Home}/>
-
-                </Sidebar>
+    return (
+      <div>
+        <Sidebar
+          sidebar={sidebarContent}
+          open={this.state.sidebarOpen}
+          onSetOpen={this.toggleVisibility}
+          styles={sidebarStyles}
+        >
+          <div className="container-fluid" style={headerStyle}>
+            <div className="row">
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                style={buttonStyle}
+                onClick={this.toggleVisibility}
+              >
+                =
+              </button>
+              <Link to={"/home"}>
+                <h2 style={titleStyle}>Crypto Chart</h2>
+              </Link>
             </div>
+          </div>
 
-        )
+          <Route exact path="/" render={() => <Redirect to="/home" />} />
+          {/*<Route path="/ethereum" render={(props) => (<Token chart="ethereum" interval="1m"/>)}/>*/}
+          {/*<Route path="/ethereum/7day" render={(props) => (<Token chart = "ethereum" interval="7d"/>)}/>*/}
+          {/*<Route path="/ethereum/1day" render={(props) => (<Token chart = "ethereum" interval="1d"/>)}/>*/}
+          <Route path="/ethereum" component={Currency} />
+          <Route path="/bitcoin" component={Currency} />
 
-    }
+          {/*<Route path="/bitcoin" render={(props) => (<Token chart="bitcoin" interval="1m"/>)}/>*/}
+          {/*<Route path="bitcoin/7day" render={(props) => (<Token chart = "bitcoin" interval="7d"/>)}/>*/}
+          {/*<Route path="bitcoin/1day" render={(props) => (<Token chart = "bitcoin" interval="1d"/>)}/>*/}
+
+          <Route path="/Home" component={Home} />
+        </Sidebar>
+      </div>
+    );
+  }
 }
